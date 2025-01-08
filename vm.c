@@ -37,3 +37,32 @@ enum {
     OP_TRAP    /* execute trap */
 };
 
+enum {               /* R_COND Conditional Flags */
+    FL_POS = 1 << 0, /* Positive */
+    FL_ZRO = 1 << 1, /* Zero */
+    FL_NEG = 1 << 2, /* Negative */
+};
+
+int main(int argc, const char* argv[]) {
+
+    reg[R_COND] = FL_ZRO; /* Initialize the condition flag to zero */
+
+    enum { PC_START = 0x3000 }; /* Program counter starting address */
+    reg[R_PC] = PC_START;
+
+    int running = 1;
+    while(running) {
+        uint16_t instr = mem_read(reg[R_PC]++);
+        uint16_t op_code = instr >> 12; /* get the 4 bit opcode */
+
+        switch(op_code) {
+            case OP_ADD: /* ADD */
+                break;
+            case OP_AND: /* AND */
+                break;
+            default: // opcode not recognized
+                break;
+        }
+    }
+
+}
