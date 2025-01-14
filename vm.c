@@ -45,6 +45,18 @@ enum {               /* R_COND Conditional Flags */
 
 int main(int argc, const char* argv[]) {
 
+    if (argc < 2) {
+        printf("lc3 [image-file1] ...\n");
+        exit(2);
+    }
+
+    for (int j = 1; j < argc; j++) {
+        if (!read_image(argv[j])) {
+            printf("Failed to load image: %s\n", argv[j]);
+            exit(1);
+        }
+    }
+
     reg[R_COND] = FL_ZRO; /* Initialize the condition flag to zero */
 
     enum { PC_START = 0x3000 }; /* Program counter starting address */
@@ -56,11 +68,37 @@ int main(int argc, const char* argv[]) {
         uint16_t op_code = instr >> 12; /* get the 4 bit opcode */
 
         switch(op_code) {
-            case OP_ADD: /* ADD */
+            case OP_ADD: 
                 break;
-            case OP_AND: /* AND */
+            case OP_AND: 
                 break;
-            default: // opcode not recognized
+            case OP_NOT: 
+                break;
+            case OP_BR: 
+                break;
+            case OP_JMP: 
+                break;
+            case OP_JSR: 
+                break;
+            case OP_LD:   
+                break;
+            case OP_LDI: 
+                break;
+            case OP_LDR: 
+                break;
+            case OP_LEA: 
+                break;
+            case OP_ST:   
+                break;
+            case OP_STI: 
+                break;
+            case OP_STR: 
+                break;
+            case OP_TRAP:   
+                break;
+            case OP_RES: 
+            case OP_RTI: 
+            default: 
                 break;
         }
     }
